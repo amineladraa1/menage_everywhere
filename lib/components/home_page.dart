@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:menage_everywhere/components/dashboard.dart';
 import 'package:menage_everywhere/components/messages.dart';
 import 'package:menage_everywhere/components/my_profile.dart';
+
 
 
 class MyHome extends StatefulWidget {
@@ -13,9 +15,7 @@ class MyHome extends StatefulWidget {
 class _MyHomeState extends State<MyHome> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-    ),
+    Dashboard(),
     Messages(),
     MyProfile(),
 
@@ -36,7 +36,7 @@ class _MyHomeState extends State<MyHome> {
             color: Colors.black,
           ),),
         ),
-        body: _widgetOptions.elementAt(_selectedIndex),
+        body:  _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           showSelectedLabels: true,
           showUnselectedLabels: true,
