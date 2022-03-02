@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:menage_everywhere/components/dashboard.dart';
 import 'package:menage_everywhere/components/messages.dart';
 import 'package:menage_everywhere/components/my_profile.dart';
-
-
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class MyHome extends StatefulWidget {
   const MyHome({Key? key}) : super(key: key);
@@ -18,7 +17,6 @@ class _MyHomeState extends State<MyHome> {
     Dashboard(),
     Messages(),
     MyProfile(),
-
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -29,47 +27,46 @@ class _MyHomeState extends State<MyHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar : AppBar(
-          elevation: 0.5,
-          backgroundColor: Colors.white,
-          title: const Text('Cleaner Finder ' , style: TextStyle(
-            color: Colors.black,
-          ),),
+      backgroundColor: Colors.grey[50],
+      appBar: AppBar(
+        elevation: 0.5,
+        backgroundColor: Colors.black87,
+        title: const Text(
+          'Cleaners  ',
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
-        body:  _widgetOptions.elementAt(_selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          unselectedItemColor: Colors.black,
-
-          elevation: 8,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              //backgroundColor: Colors.black54,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'Business',
-              //backgroundColor: Colors.black54,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.messenger_outline),
-              label: 'my messages',
-              //backgroundColor: Colors.black54,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_outlined),
-              label: 'Profile',
-             // backgroundColor: Colors.black54,
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.lightBlue[800],
-          backgroundColor: Colors.black54,
-          onTap: _onItemTapped,
-        ));
+      ),
+      body: _widgetOptions.elementAt(_selectedIndex),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.grey.shade50,
+        buttonBackgroundColor: Colors.black87,
+        color: Colors.black87,
+        items: <Widget>[
+          Icon(
+            Icons.home,
+            size: 25,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.messenger_outline,
+            size: 25,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.compare_arrows,
+            size: 25,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.account_circle_outlined,
+            size: 25,
+            color: Colors.white,
+          ),
+        ],
+        onTap: _onItemTapped,
+      ),
+    );
   }
 }
-
