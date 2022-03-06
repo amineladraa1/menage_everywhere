@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:menage_everywhere/ui/messages_avatar.dart';
+import 'package:menage_everywhere/ui/recent_msg_list.dart';
 import 'package:menage_everywhere/ui/title_text.dart';
 import 'package:badges/badges.dart';
 
@@ -17,10 +19,20 @@ class _MessagesState extends State<Messages>
   @override
   void initState() {
     super.initState();
-    _controller = new TabController(length: 2, vsync: this);
+    _controller = new TabController(
+      length: 2,
+      vsync: this,
+    );
   }
 
   List<String> names = ['avatar', 'salmasa', 'bratan', 'lapay'];
+
+  onTapController() {
+    setState(() {
+      print('clicked!!');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -55,41 +67,11 @@ class _MessagesState extends State<Messages>
             child: TabBarView(
               controller: _controller,
               children: [
-                ListView.builder(
-                  itemCount: names.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      leading: Badge(
-                        shape: BadgeShape.circle,
-                        elevation: 4.0,
-                        badgeColor: Colors.greenAccent,
-                        stackFit: StackFit.passthrough,
-                        position: BadgePosition.bottomEnd(bottom: 5, end: 5),
-                        child: CircleAvatar(
-                          radius: 32.0,
-                          backgroundImage:
-                              AssetImage('images/profile${index + 1}.jpg'),
-                        ),
-                      ),
-                      title: Text(names[index],
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 17.0,
-                          )),
-                      subtitle: Text("the message should be here ",
-                          style: TextStyle(
-                            color: Colors.black45,
-                            fontSize: 15.0,
-                          )),
-                      trailing: IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.menu_sharp),
-                        splashRadius: 19.0,
-                      ),
-                    );
-                  },
+                RecentMessages(
+                  names: names,
+                  onTapController: onTapController,
                 ),
-                Center(child: Text('page2')),
+                const Center(child: Text('page2')),
               ],
             ),
           ),
